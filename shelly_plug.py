@@ -133,8 +133,8 @@ def status():
     """
     # GET /status (Shelly PlugS)
     power_1min = random.uniform(30, 100)
-    power_2min = power_1min * random.uniform(1.5, 2.5)
-    power_3min = power_2min * random.uniform(1.1, 1.3)
+    power_2min = power_1min * random.uniform(0.9, 1.3)
+    power_3min = power_2min * random.uniform(0.9, 1.3)
     r = {
         "relays": [
             {
@@ -183,21 +183,21 @@ def meter(id:int):
     """
     # GET / meter / 0
 
-    print(f"selected meter id: {id}")
+    #print(f"selected meter id: {id}")
     if(id != 0):
         print(f"meter with id {id} is not available.")
         r = False
     else:
-        power_1min = random.uniform(30, 100)
-        power_2min = power_1min * random.uniform(1.5, 2.5)
-        power_3min = power_2min * random.uniform(1.1, 1.3)
+        power_1min = random.uniform(500, 800)
+        power_2min = power_1min * random.uniform(0.9, 1.3)
+        power_3min = power_2min * random.uniform(0.9, 1.3)
         r = {
             "power": 0,
             "overpower": 23.78,
             "is_valid": True,
             "timestamp": 0,
             "counters": [power_1min, power_2min, power_3min],
-            "total": 4
+            "total": power_1min + power_2min + power_3min
         }
 
     return r
